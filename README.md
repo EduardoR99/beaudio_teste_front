@@ -43,11 +43,11 @@ npm run dev
 yarn dev
 ```
 
-O frontend estará disponível em [http://localhost:5173](http://localhost:5173) (ou outra porta informada pelo Vite).
+O frontend estará disponível em [http://localhost:5173/login](http://localhost:5173/login) (ou outra porta informada pelo Vite).
 
 ### 5. Acesse a aplicação
 
-Abra o navegador e acesse [http://localhost:5173](http://localhost:5173).
+Abra o navegador e acesse [http://localhost:5173/login](http://localhost:5173/login).
 
 ## Observações
 
