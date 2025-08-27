@@ -8,11 +8,12 @@ export async function getTasks(taskListId, token) {
   return res.data
 }
 
-export async function createTask(title, description, taskListId, token) {
+export async function createTask(title, description, taskListId, token, time) {
   const res = await axios.post(`${API_URL}/tasks`, {
     title,
     description,
-    taskListId
+    taskListId,
+    time
   }, {
     headers: { Authorization: `Bearer ${token}` }
   })

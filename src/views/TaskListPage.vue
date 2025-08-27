@@ -56,13 +56,14 @@ const fetchTasks = async () => {
   }
 }
 
-const handleCreateTask = async ({ title, description }) => {
+const handleCreateTask = async ({ title, description, time }) => {
   try {
     await createTaskRequest(
       title,
       description,
       Number(route.params.id),
-      token
+      token,
+      time
     )
     fetchTasks()
   } catch (err) {
@@ -87,7 +88,8 @@ const saveEdit = async (task) => {
     await updateTask(task.id, {
       title: task.title,
       description: task.description,
-      completed: task.completed
+      completed: task.completed,
+      time: task.time 
     }, token)
     editingId.value = null
     fetchTasks()

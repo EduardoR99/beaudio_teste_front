@@ -22,6 +22,9 @@
             class="text-red-400 hover:text-red-600 font-semibold transition text-xs cursor-pointer">Excluir</button>
         </div>
       </div>
+      <p class="text-[#e4e4f6] text-xs mt-1" v-if="task.time">
+        <span class="font-semibold">Time:</span> {{ task.time }}
+      </p>
       <p class="text-[#bdbddd] mt-1 break-words whitespace-pre-line" v-if="task.description">
         {{ task.description }}
       </p>
@@ -29,6 +32,7 @@
     <div v-else>
       <InputLogin :id="`edit-title-${task.id}`" label="Título" v-model="editTitle" type="text" required />
       <InputLogin :id="`edit-desc-${task.id}`" label="Descrição" v-model="editDescription" type="text" class="break-words" />
+      <InputLogin :id="`edit-time-${task.id}`" label="Time" v-model="editTime" type="text" />
       <div class="flex gap-2 mt-2">
         <BaseButton @click="save" class="w-full font-semibold">Salvar</BaseButton>
         <BaseButton @click="$emit('cancel-edit')" class="w-full font-semibold bg-gray-500 hover:bg-gray-600">Cancelar</BaseButton>
@@ -53,11 +57,13 @@ const emit = defineEmits(['save', 'cancel-edit', 'edit', 'delete', 'toggle-compl
 
 const editTitle = ref(props.editTitle || '')
 const editDescription = ref(props.editDescription || '')
+const editTime = ref(props.task.time || '')
 
 watch(() => props.editTitle, val => editTitle.value = val)
 watch(() => props.editDescription, val => editDescription.value = val)
+watch(() => props.task.time, val => editTime.value = val)
 
 const save = () => {
-  emit('save', { ...props.task, title: editTitle.value, description: editDescription.value })
+  emit('save', { ...props.task, title: editTitle.value, description: editDescription.value, time: editTime.value })
 }
 </script>
